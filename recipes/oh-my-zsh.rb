@@ -35,7 +35,7 @@ git "#{node['etc']['passwd'][node['current_user']]['dir']}/.oh-my-zsh" do
 end
 
 git "#{node['etc']['passwd'][node['current_user']]['dir']}/.oh-my-zsh-custom" do
-  repository 'git@github.com:h13ronim/oh-my-zsh-custom.git'
+  repository 'git@github.com:pr0d1r2/oh-my-zsh-custom.git'
   revision 'master'
   action :checkout
   user node['current_user']
