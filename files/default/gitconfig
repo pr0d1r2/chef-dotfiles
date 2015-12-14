@@ -19,3 +19,5 @@
 	email = pr0d1r2@gmail.com
 [push]
 	default = simple
+[core]
+	editor = /usr/bin/vim
