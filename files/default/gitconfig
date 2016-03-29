@@ -19,5 +19,9 @@
 	email = pr0d1r2@gmail.com
 [push]
 	default = simple
+[branch]
+	autosetuprebase = always
+[rebase]
+	autosquash = true
 [core]
 	editor = /usr/bin/vim
