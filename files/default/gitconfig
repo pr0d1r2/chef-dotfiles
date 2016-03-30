@@ -17,6 +17,7 @@
 [user]
 	name = Marcin Nowicki
 	email = pr0d1r2@gmail.com
+	useconfigonly = true
 [push]
 	default = simple
 [branch]
