@@ -52,4 +52,5 @@ end
 
 link "#{home_dir}/.zshrc" do
   to "#{home_dir}/.oh-my-zsh-custom/zshrc"
+  owner user_name
 end
