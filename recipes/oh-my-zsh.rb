@@ -50,6 +50,6 @@ git "#{home_dir}/.oh-my-zsh-custom" do
   user user_name
 end
 
-link "#{node['etc']['passwd'][node['current_user']]['dir']}/.zshrc" do
-  to "#{node['etc']['passwd'][node['current_user']]['dir']}/.oh-my-zsh-custom/zshrc"
+link "#{home_dir}/.zshrc" do
+  to "#{home_dir}/.oh-my-zsh-custom/zshrc"
 end
