@@ -28,17 +28,26 @@ package 'zsh' do
   action :install
 end
 
-git "#{node['etc']['passwd'][node['current_user']]['dir']}/.oh-my-zsh" do
+if node['user'] && node['user']['id']
+  user_name = node['user']['id']
+  home_dir = Etc.getpwnam(user_name).dir
+else
+  user_name = node['current_user']
+  home_dir = node['etc']['passwd'][user_name]['dir']
+end
+
+git "#{home_dir}/.oh-my-zsh" do
   repository 'https://github.com/robbyrussell/oh-my-zsh.git'
   revision 'master'
   action :checkout
+  user user_name
 end
 
-git "#{node['etc']['passwd'][node['current_user']]['dir']}/.oh-my-zsh-custom" do
+git "#{home_dir}/.oh-my-zsh-custom" do
   repository 'git@github.com:pr0d1r2/oh-my-zsh-custom.git'
   revision 'master'
   action :checkout
-  user node['current_user']
+  user user_name
 end
 
 link "#{node['etc']['passwd'][node['current_user']]['dir']}/.zshrc" do
