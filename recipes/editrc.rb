@@ -24,8 +24,16 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-cookbook_file "#{node['etc']['passwd'][node['current_user']]['dir']}/.editrc" do
+if node['user'] && node['user']['id']
+  user_name = node['user']['id']
+  home_dir = Etc.getpwnam(user_name).dir
+else
+  user_name = node['current_user']
+  home_dir = node['etc']['passwd'][user_name]['dir']
+end
+
+cookbook_file "#{home_dir}/.editrc" do
   source "editrc"
-  owner node['current_user']
+  owner user_name
   mode "0600"
 end

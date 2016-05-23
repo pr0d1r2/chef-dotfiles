@@ -23,9 +23,17 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
+#
+if node['user'] && node['user']['id']
+  user_name = node['user']['id']
+  home_dir = Etc.getpwnam(user_name).dir
+else
+  user_name = node['current_user']
+  home_dir = node['etc']['passwd'][user_name]['dir']
+end
 
-cookbook_file "#{node['etc']['passwd'][node['current_user']]['dir']}/.gemrc" do
+cookbook_file "#{home_dir}/.gemrc" do
   source "gemrc"
-  owner node['current_user']
+  owner user_name
   mode "0600"
 end
